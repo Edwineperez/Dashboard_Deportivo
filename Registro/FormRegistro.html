@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulario</title>
+        <link href="css/styless.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    </head>
+    <body>
+
+        <div class="sidebar">
+            <div class="logo"></div>
+            <ul class="menu">
+                <li class="active">
+                    <a href="../Dashboard/Panel.jsp">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Inicio</span>
+                    </a>
+                </li>              
+            </ul>
+        </div>
+
+        <div class="main--content">
+            <div class="header--wrapper">
+                <div class="header--title">
+                    <img src="css/imag.png" alt="Imagen de Registro" style="width: 100%; max-width: 100%; height: auto;">
+
+                </div>
+            </div>
+
+            <div class="form-container">
+
+                <h1>Formulario de Registro</h1><br>
+
+                <form name="form" action="../Registro/DatosRegistro.jsp" method="POST" class="formRegistro">
+
+                    <!-- INFORMACIÓN PERSONAL -->
+
+                    <div class="accordion">
+                        <button type="button" class="accordion-header">Información Personal</button>
+                        <div class="accordion-content">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nombres">Nombres</label>
+                                    <input type="text" id="nombres" name="nombres" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellidos">Apellidos</label>
+                                    <input type="text" id="apellidos" name="apellidos" required>
+                                </div>
+                            </div>
+
+                            <label>Sexo:</label><br><br>
+                            <label><input type="radio" name="sexo" value="Masculino" required> Masculino</label><br>
+                            <label><input type="radio" name="sexo" value="Femenino" required> Femenino</label><br><br>
+
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="tdocumento">Tipo Documento</label>
+                                    <select id="tdocumento" name="tdocumento" required>
+                                        <option disabled selected value="">Seleccione</option>
+                                        <option value="Cedula Ciudadana">Cédula Ciudadana</option>
+                                        <option value="Tarjeta Identidad">Tarjeta Identidad</option>
+                                        <option value="Pasaporte">Pasaporte</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="documento">Nº Documento</label>
+                                    <input type="text" id="documento" name="documento" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="Lnacimiento">Lugar de Nacimiento</label>
+                                    <input type="text" id="Lnacimiento" name="Lnacimiento">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pais">País</label>
+                                    <input type="text" id="pais" name="pais" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="RH">Grupo Sanguíneo</label>
+                                    <input type="text" id="RH" name="RH">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fnacimiento">Fecha de Nacimiento</label>
+                                    <input type="date" id="fnacimiento" name="fnacimiento" required oninput="calcularEdad()">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="edad">Edad</label>
+                                    <input type="number" id="edad" name="edad" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Altura">Altura (m)</label>  
+                                    <input type="number" id="Altura" name="Altura" step="0.01" required oninput="calcularDatos()">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="Peso">Peso (kg)</label>
+                                    <input type="number" id="Peso" name="Peso" step="0.1" required oninput="calcularDatos()">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Promedio">Promedio</label>
+                                    <input type="text" id="Promedio" name="Promedio" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="PesoIdeal">Peso Ideal</label>
+                                    <input type="text" id="PesoIdeal" name="PesoIdeal" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DATOS DE CONTACTO -->
+                        <button type="button" class="accordion-header">Información de Contacto</button>
+                        <div class="accordion-content">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="direccion">Dirección</label>
+                                    <input type="text" id="direccion" name="direccion">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono</label>
+                                    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" placeholder="10 dígitos" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ciudad">Ciudad</label>
+                                    <input type="text" id="ciudad" name="ciudad">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Correo Electrónico</label>
+                                    <input type="email" id="email" name="email">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- INFORMACIÓN DEPORTIVA -->
+                        <button type="button" class="accordion-header">Información Deportiva</button>
+                        <div class="accordion-content">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="club">Nombre del Club/Academia</label>
+                                    <input type="text" id="club" name="club">
+                                </div>
+                                <div class="form-group">
+                                    <label for="deporte">Disciplina o Deporte</label>
+                                    <select id="deporte" name="deporte" required>
+                                        <option disabled selected value="">Seleccione</option>
+                                        <option value="Fútbol">Fútbol</option>
+                                        <option value="Rugby">Rugby</option>    
+                                        <option value="Natación">Natación</option>
+                                        <option value="Voleibol">Voleibol</option>
+                                        <option value="Baloncesto">Baloncesto</option>
+                                        <option value="Karate">Karate</option>
+                                        <option value="Tenis">Tenis</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="categoria">Categoría</label>
+                                    <select id="categoria" name="categoria" required>
+                                        <option disabled selected value="">Seleccione</option>
+                                        <option value="SUB-BABY">SUB-BABY</option>
+                                        <option value="SUB-10">SUB-10</option>
+                                        <option value="SUB-15">SUB-15</option>
+                                        <option value="SUB-18">SUB-18</option>
+                                        <option value="SUB-20">SUB-20</option>
+                                        <option value="SUB-VETERANOS">SUB-VETERANOS</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CONTACTO DE EMERGENCIA -->
+                        <button type="button" class="accordion-header">Contacto de Emergencia</button>
+                        <div class="accordion-content">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="P_nombres">Nombres</label>
+                                    <input type="text" id="P_nombres" name="P_nombres">
+                                </div>
+                                <div class="form-group">
+                                    <label for="P_apellidos">Apellidos</label>
+                                    <input type="text" id="P_apellidos" name="P_apellidos">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="parentesco">Parentesco</label>
+                                    <input type="text" id="parentesco" name="parentesco">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ocupación">Ocupación</label>
+                                    <select id="ocupación" name="ocupación" required>
+                                        <option disabled selected value="">Seleccione</option>
+                                        <option value="Abogada/o">Abogada/o</option>
+                                        <option value="Actriz/ actor">Actriz/ actor</option>
+                                        <option value="Actriz/ actor">Actriz/ actor</option>
+                                        <option value="Administrador/a de fincas">Administrador/a de fincas</option>
+                                        <option value="Administrativa/o comercial">Administrativa/o comercial</option>
+                                        <option value="Administrativa/o de bancas">Administrativa/o de bancas</option>
+                                        <option value="Administrativa/o de gestión y personal">Administrativa/o de gestión y personal</option>
+                                        <option value="Agente de bolsa">Agente de bolsa</option>
+                                        <option value="Agente de seguros">Agente de seguros</option>
+                                        <option value="Agente de viajes">Agente de viajes</option>
+                                        <option value="Agrónoma/o">Agrónoma/o</option>
+                                        <option value="Analista de mercados">Analista de mercados</option>
+                                        <option value="Animador/a sociocultural">Animador/a sociocultural</option>
+                                        <option value="Antropóloga/o">Antropóloga/o</option>
+                                        <option value="Ama de Casa">Ama de Casa</option>
+                                        <option value="Archivera/o">Archivera/o</option>
+                                        <option value="Arqueóloga/o">Arqueóloga/o</option>
+                                        <option value="Arquitecta/o, técnica/o">Arquitecta/o, técnica/o</option>
+                                        <option value="Asesor/a de empresas">Asesor/a de empresas</option>
+                                        <option value="Auxiliar de ayudas a domicilio">Auxiliar de ayudas a domicilio</option>
+                                        <option value="Bailarín/a">Bailarín/a</option>
+                                        <option value="Bibliotecaria/o">Bibliotecaria/o</option> 
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="telefono_1">Teléfono</label>
+                                    <input type="tel" id="telefono_1" name="telefono_1" pattern="[0-9]{10}" placeholder="10 dígitos" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email_1">Correo Electrónico</label>
+                                    <input type="email" id="email_1" name="email_1">
+                                </div>
+                            </div>
+
+                            <!-- SEGUNDO CONTACTO -->
+                            <h3>Segunda Persona de Contacto</h3><br>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="A_nombres">Nombres</label>
+                                    <input type="text" id="A_nombres" name="A_nombres">
+                                </div>
+                                <div class="form-group">
+                                    <label for="A_apellidos">Apellidos</label>
+                                    <input type="text" id="A_apellidos" name="A_apellidos">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="telefono_2">Teléfono</label>
+                                    <input type="tel" id="telefono_2" name="telefono_2" pattern="[0-9]{10}" placeholder="10 dígitos" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PLANES -->
+                        <button type="button" class="accordion-header">Planes y Pagos</button>
+                        <div class="accordion-content">
+
+                            <div class="form-group">
+                                <div class="duracion-container">
+                                    <label for="Plan">Tipos de Planes</label>
+                                    <select id="Plan" name="Plan" required onchange="actualizarPrecio()">
+                                        <option disabled selected value="">Seleccione</option>
+                                        <option value="Premium">Plan Premium</option>
+                                        <option value="Deluxe">Plan Deluxe</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="duracion-container">
+                                <label>Adquiere:</label>
+                                <label><input type="radio" name="duracion" value="1" required onclick="actualizarPrecio()"> 1 Mes</label>
+                                <label><input type="radio" name="duracion" value="3" onclick="actualizarPrecio()"> 3 Meses</label>
+                                <label><input type="radio" name="duracion" value="6" onclick="actualizarPrecio()"> 6 Meses</label>
+                                <label><input type="radio" name="duracion" value="12" onclick="actualizarPrecio()"> 12 Meses</label>
+                            </div>
+
+                            <!-- Precio Total -->
+
+                            <h4>Precio Total</h4>
+                            <div class="precio-container">
+                                <p id="precioTotal" onclick="actualizarPrecio()" style="font-size: 18px; font-weight: bold; color: blue;">
+                                    Selecciona un plan y una duración para ver el precio.
+                                </p>
+                            </div><br><br>
+
+                            <!-- Proceso de Pago -->
+
+                            <div class="duracion-container">
+                                <p><strong>PROCESO DE PAGO</strong></p><br>
+
+                                <label for="efectivo">
+                                    <input type="radio" id="efectivo" name="mPago" value="Efectivo" required>
+                                    Efectivo
+                                </label>
+
+                                <label for="tarjeta">
+                                    <input type="radio" id="tarjeta" name="mPago" value="Tarjeta">
+                                    Tarjeta
+                                </label>
+
+                                <label for="Tran_PSE">
+                                    <input type="radio" id="Tran_PSE" name="mPago" value="Transferencia/PSE">
+                                    Transferencia/PSE
+                                </label>
+                            </div>
+                        </div><br><br>
+
+                        <!-- Políticas -->
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="politicas" name="politicas" value="checkbox" required>
+                            <label for="politicas">He leído y acepto la <a href="Politicas.html" target="_blank">Política de Privacidad</a>.
+                            </label>
+                        </div><br>
+
+                        <div class="boton-centrado">
+                            <button type="submit">Registrar</button>
+                        </div>
+
+                </form>
+
+            </div>
+
+
+            <script>
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    const headers = document.querySelectorAll(".accordion-header");
+
+                    headers.forEach(header => {
+                        header.addEventListener("click", function () {
+                            const content = this.nextElementSibling;
+                            document.querySelectorAll(".accordion-content").forEach(panel => {
+                                if (panel !== content)
+                                    panel.style.display = "none";
+                            });
+                            content.style.display = content.style.display === "block" ? "none" : "block";
+                        });
+                    });
+                });
+
+                function calcularEdad() {
+                    let fechaNacimiento = document.getElementById("fnacimiento").value;
+                    let edadInput = document.getElementById("edad");
+
+                    if (fechaNacimiento) {
+                        let fechaNac = new Date(fechaNacimiento);
+                        let hoy = new Date();
+                        let edad = hoy.getFullYear() - fechaNac.getFullYear();
+                        let mes = hoy.getMonth() - fechaNac.getMonth();
+                        let dia = hoy.getDate() - fechaNac.getDate();
+
+                        // Si no ha cumplido años en el mes actual, resta 1 a la edad
+                        if (mes < 0 || (mes === 0 && dia < 0)) {
+                            edad--;
+                        }
+
+                        edadInput.value = edad;
+                    } else {
+                        edadInput.value = "";
+                    }
+                }
+
+                function calcularDatos() {
+                    let altura = parseFloat(document.getElementById("Altura").value);
+                    let peso = parseFloat(document.getElementById("Peso").value);
+
+                    if (!isNaN(altura) && !isNaN(peso)) {
+                        let promedio = (altura + peso) / 2;
+                        document.getElementById("Promedio").value = promedio.toFixed(2);
+
+                        let pesoIdeal = 22 * (altura * altura); // Fórmula básica para un IMC de 22
+                        document.getElementById("PesoIdeal").value = pesoIdeal.toFixed(2);
+                    } else {
+                        document.getElementById("Promedio").value = "";
+                        document.getElementById("PesoIdeal").value = "";
+                    }
+                }
+
+                // Precios establecidos por cada tipo de plan y duración
+                const precios = {
+                    "Premium": {"1": 50, "3": 140, "6": 270, "12": 500},
+                    "Deluxe": {"1": 80, "3": 220, "6": 420, "12": 750}
+                };
+
+                function actualizarPrecio() {
+                    let planSeleccionado = document.getElementById("Plan").value;
+                    let duracionSeleccionada = document.querySelector('input[name="duracion"]:checked');
+
+                    let precioTotal = document.getElementById("precioTotal");
+
+                    if (planSeleccionado && duracionSeleccionada) {
+                        let duracion = duracionSeleccionada.value;
+                        let precio = precios[planSeleccionado][duracion];
+
+                        precioTotal.innerHTML = `<strong></strong> $${precio} USD`;
+                    } else {
+                        precioTotal.innerHTML = "Selecciona un plan y una duración para ver el precio.";
+                    }
+                }
+
+
+                document.querySelector("form").addEventListener("submit", function (e) {
+                    let email = document.getElementById("email").value;
+                    if (!email.includes("@")) {
+                        alert("Correo electrónico no válido.");
+                        e.preventDefault();
+                        return;
+                    }
+
+                    
+                });
+
+
+            </script>
+
+
+    </body>
+</html>
